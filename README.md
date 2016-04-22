@@ -18,6 +18,6 @@ see [sharedExpense Wiki](https://github.com/ctietze/shared-expense/wiki)
 tbd.
 
 # Modules
-`shared-expense-app` : Android App
-`shared-expense-rest-api` : Description of the REST API.
+`shared-expense-app` : Android App   
+`shared-expense-rest-api` : Description of the REST API.   
 `examples` : Examples for the storage implementation.
