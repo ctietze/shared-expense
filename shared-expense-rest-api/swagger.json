@@ -1,0 +1,352 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Shared Expense Storage REST API",
+        "version": "0.3"
+    },
+    "host": "localhost",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/0.3",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/list/expense/Summary": {
+            "get": {
+                "description": "Sum all expenses (by year (and month))\n",
+                "parameters": [
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Year to summarize",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Month to summarize",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "ExpenseSummary"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of expense summaries",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ExpenseSummary"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/list/expenses": {
+            "get": {
+                "description": "List all expenses (by year (and month (and day)))\n",
+                "parameters": [
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Year of the expense",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Month of the expense",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "day",
+                        "in": "query",
+                        "description": "Day of the expense",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "Expenses"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An list of expenses",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Expense"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/expense/show/{id}": {
+            "get": {
+                "summary": "Show expense",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the expense",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "Expense"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An expense",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Expense"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/expense/create": {
+            "put": {
+                "summary": "Create new expense",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the expense",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "paid",
+                        "in": "query",
+                        "description": "Date of payment",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "cost",
+                        "in": "query",
+                        "description": "Cost of the expense",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "Expense"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An expense",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Expense"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/expense/update/{id}": {
+            "put": {
+                "summary": "Update existing expense",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the expense",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the expense",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "paid",
+                        "in": "query",
+                        "description": "Date of payment",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "cost",
+                        "in": "query",
+                        "description": "Cost of the expense",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "Expense"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An expense",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Expense"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/expense/delete/{id}": {
+            "delete": {
+                "summary": "Delete expense",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the expense",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    }
+                ],
+                "tags": [
+                    "Expense"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ExpenseSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier representing the year of the summary"
+                },
+                "year": {
+                    "type": "string",
+                    "description": "Display number of the year"
+                },
+                "month": {
+                    "type": "string",
+                    "description": "Display number of the month"
+                },
+                "cost": {
+                    "type": "number",
+                    "description": "Summarized costs of the selected year, month"
+                }
+            }
+        },
+        "Expense": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier representing of the expense"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display number of the year"
+                },
+                "paid": {
+                    "type": "string",
+                    "description": "Display number of the month"
+                },
+                "cost": {
+                    "type": "number",
+                    "description": "Summarized costs of the selected year, month"
+                },
+                "created": {
+                    "type": "string",
+                    "description": "Summarized costs of the selected year, month"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
